@@ -46,15 +46,22 @@ public class StoreItem{
 
     public void changePrice(String newPrice) {
         BigDecimal priceChangeCanidate = createPriceChangeCanidate(newPrice);
-        if(priceChangeCanidate.floatValue()<0) throw new InvalidPriceException("New price cannot be a negative number.");
-        if(priceChangeCanidate.intValue()>=1000000)throw new InvalidPriceException("New price cannot be over $999,999.99");
+        vaildatePriceValueIsValid(priceChangeCanidate);
+        price = priceChangeCanidate;
+    }
+
+    private void vaildatePriceValueIsValid(BigDecimal priceChangeCanidate) {
+        if (priceChangeCanidate.floatValue() < 0)
+            throw new InvalidPriceException("New price cannot be a negative number.");
+        if (priceChangeCanidate.intValue() >= 1000000)
+            throw new InvalidPriceException("New price cannot be over $999,999.99");
     }
 
     private BigDecimal createPriceChangeCanidate(String newPrice) {
         BigDecimal priceChangeCanidate;
-        try{
+        try {
             priceChangeCanidate = new BigDecimal(newPrice);
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new InvalidPriceException("New price must be a numeric value.");
         }
         return priceChangeCanidate;

@@ -73,6 +73,13 @@ public class StoreItemTest{
         );
     }
 
+    @Test
+    @DisplayName("changePrice() changes the price of the StoreItem object.")
+    public void changePrice_GivenAValidPrice_ChangesThePrice() {
+        underTest.changePrice("1.25");
+        assertEquals("1.25", underTest.getPrice().toString());
+    }
+
     private void assertInvalidPriceExceptionThrown(String newPrice, String expectedMessage) {
         RuntimeException exception = assertThrows(InvalidPriceException.class,
                 () -> {
