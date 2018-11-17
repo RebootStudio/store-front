@@ -44,6 +44,36 @@ public class StoreItem{
         return imageUrl;
     }
 
+    public void changePrice(String newPrice) {
+        BigDecimal priceChangeCanidate = createPriceChangeCanidate(newPrice);
+        if(priceChangeCanidate.floatValue()<0) throw new InvalidPriceException("New price cannot be a negative number.");
+        if(priceChangeCanidate.intValue()>=1000000)throw new InvalidPriceException("New price cannot be over $999,999.99");
+    }
+
+    private BigDecimal createPriceChangeCanidate(String newPrice) {
+        BigDecimal priceChangeCanidate;
+        try{
+            priceChangeCanidate = new BigDecimal(newPrice);
+        }catch (NumberFormatException e){
+            throw new InvalidPriceException("New price must be a numeric value.");
+        }
+        return priceChangeCanidate;
+    }
+
+    protected class InvalidPriceException extends RuntimeException{
+        private String message;
+
+        public InvalidPriceException(String message) {
+
+            this.message = message;
+        }
+
+        @Override
+        public String getMessage() {
+            return message;
+        }
+    }
+
     protected class InvalidDescriptionException extends RuntimeException{
 
         private String message;
