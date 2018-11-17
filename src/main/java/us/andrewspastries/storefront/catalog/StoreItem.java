@@ -1,10 +1,16 @@
 package us.andrewspastries.storefront.catalog;
 
+import java.math.BigDecimal;
+
 public class StoreItem{
 
+    protected static final BigDecimal DEFAULT_PRICE = new BigDecimal("1.00");
     protected static final String DEFAULT_STORE_ITEM_DESCRIPTION = "This is the default store item description.";
+    protected static final String DEFAULT_IMAGE_URL = "./images/default.jpg";
     private String itemName;
     private String description = DEFAULT_STORE_ITEM_DESCRIPTION;
+    private BigDecimal price = DEFAULT_PRICE;
+    private String imageUrl = DEFAULT_IMAGE_URL;
 
     public StoreItem(String itemName) {
 
@@ -28,6 +34,14 @@ public class StoreItem{
         if (newDescription == null) throw new InvalidDescriptionException("New description cannot be a null value.");
         if (newDescription.length() > 500)
             throw new InvalidDescriptionException("New description cannot exceed 500 characters.");
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
     }
 
     protected class InvalidDescriptionException extends RuntimeException{
