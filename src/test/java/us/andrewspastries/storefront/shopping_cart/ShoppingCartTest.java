@@ -11,10 +11,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ShoppingCartTest{
     private ShoppingCart underTest;
-
+    private StoreItem testItem1;
     @BeforeEach
     public void setup() {
         underTest = ShoppingCartFactory.createNewShoppingCart();
+        testItem1 = StoreItemFactory.createNewStoreItem("Test Item 1");
+
     }
 
     @Test
@@ -25,12 +27,20 @@ public class ShoppingCartTest{
                 () -> assertAddItemQuantity(2)
         );
     }
+    @Test
+    public void addItem_AddTwoDifferentItems_ItemCountIsAMountOfItemsAdded(){
+        StoreItem testItem2 = StoreItemFactory.createNewStoreItem("Test Item 2");
+        underTest.addItem(testItem1,1);
+        underTest.addItem(testItem2,1);
+        assertEquals(2, underTest.getItemCount());
+    }
 
     private void assertAddItemQuantity(int addedQuantity) {
-        StoreItem testItem = StoreItemFactory.createNewStoreItem("Test Item 1");
-        underTest.addItem(testItem, addedQuantity);
+        underTest = ShoppingCartFactory.createNewShoppingCart();
+        underTest.addItem(testItem1, addedQuantity);
         assertEquals(addedQuantity, underTest.getItemCount(),
                 "ShoppingCart item count does not match expected value.");
     }
+
 
 }
