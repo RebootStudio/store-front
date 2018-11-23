@@ -9,7 +9,7 @@ public class CartItem{
     private int quantity;
 
     public CartItem(StoreItem storeItem, int quantity) {
-
+        if(quantity<1) throw new InvalidCartItemQuantityException("CartItem cannot be created with a quantity less than one.");
         this.storeItem = storeItem;
         this.quantity = quantity;
     }

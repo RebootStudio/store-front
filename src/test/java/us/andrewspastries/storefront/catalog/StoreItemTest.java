@@ -79,6 +79,7 @@ public class StoreItemTest{
                 "StoreItem object price does not match given value.");
     }
     @Test
+    @DisplayName("changeImageUrl() changes the imageUrl of the StoreItem object.")
     public void changeImageUrl_GivenNewUrl_ChangesImageUrlToNewUrl(){
         underTest.changeImageUrl("./images/sample.jpg");
         assertEquals("./images/sample.jpg",underTest.getImageUrl(),
