@@ -28,4 +28,7 @@ public class ShoppingCart{
         }
         return cartSubtotal;
     }
+
+    public void changeCartItemQuantity(StoreItem cartItem, int changedQuantity) {
+    }
 }

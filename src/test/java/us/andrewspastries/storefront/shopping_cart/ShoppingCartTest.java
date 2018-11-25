@@ -54,9 +54,15 @@ public class ShoppingCartTest{
                 () -> assertCartSubtotalForTwoItems(1, 1, "3.50"),
                 () -> assertCartSubtotalForTwoItems(3, 2, "8.00")
         );
+    }
+    @Test
+    @DisplayName("changeCartItemQuantity() changes the quantity of StoreItem in the shopping cart.")
+    public void changeCartItemQuantity_CartWithItemAndThenChangeItemQuantity_ChangesItemQuantity(){
+        underTest.addItem(testItem1, 1);
+        underTest.changeCartItemQuantity(testItem1, 5);
+
 
     }
-
 
     private void assertCartSubtotalForTwoItems(int item1Quantity, int item2Quantity, String assertedSubtotal) {
         underTest = ShoppingCartFactory.createNewShoppingCart();
