@@ -91,6 +91,4 @@ public class ShoppingCartTest{
         assertEquals(addedQuantity, underTest.getItemCount(),
                 "ShoppingCart item count does not match expected value.");
     }
-
-
 }
