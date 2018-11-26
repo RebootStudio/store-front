@@ -25,4 +25,8 @@ public class CartItem{
         return storeItem.getPrice().multiply(new BigDecimal(quantity));
 
     }
+    protected static double cartItemSubtotalAsDouble(CartItem cartItem) {
+        return cartItem.cartItemSubtotal().doubleValue();
+    }
 }
+
