@@ -116,7 +116,4 @@ public class StoreItemTest{
         StoreItem testStoreItem = StoreItemFactory.createNewStoreItem(itemName);
         assertEquals(itemName, testStoreItem.getItemName(), "StoreItem names not set properly.");
     }
-
-
-
 }
